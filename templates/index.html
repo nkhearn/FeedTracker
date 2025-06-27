@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas' Feeding Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Thomas' Feeding Tracker</h1>
+
+        <h2>Historic Feeds</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                        <th>Amount (ml)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for feed in feeds %}
+                    <tr>
+                        <td data-label="Start Time">{{ feed.start_time.strftime('%d/%m/%y %H:%M') }}</td>
+                        <td data-label="End Time">{{ feed.end_time.strftime('%d/%m/%y %H:%M') }}</td>
+                        <td data-label="Amount (ml)">{{ '%.1f' % feed.amount_ml }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% if not feeds %}
+                    <tr>
+                        <td colspan="3">No feeding data yet. Add a new feed below!</td>
+                    </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <h2>Add New Feed</h2>
+        <form method="POST" action="/">
+            <div class="form-group">
+                <label for="start_time">Start Time:</label>
+                <input type="datetime-local" id="start_time" name="start_time" required>
+            </div>
+            <div class="form-group">
+                <label for="end_time">End Time:</label>
+                <input type="datetime-local" id="end_time" name="end_time" required>
+            </div>
+           <div class="form-group">
+    <label for="amount_ml">Amount (ml):</label>
+    <select id="amount_ml" name="amount_ml" required>
+        {% for i in range(0, 301, 5) %}
+        <option value="{{ i }}">{{ i }} ml</option>
+        {% endfor %}
+    </select>
+</div>
+
+            <button type="submit">Add Feed</button>
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to pre-fill datetime-local inputs
+        window.onload = function() {
+            function setCurrentDateTime() {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = (now.getMonth() + 1).toString().padStart(2, '0');
+                const day = now.getDate().toString().padStart(2, '0');
+                const hours = now.getHours().toString().padStart(2, '0');
+                const minutes = now.getMinutes().toString().padStart(2, '0');
+
+                const currentDateTimeLocal = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+                document.getElementById('start_time').value = currentDateTimeLocal;
+                document.getElementById('end_time').value = currentDateTimeLocal;
+            }
+
+            setCurrentDateTime();
+        };
+    </script>
+</body>
+</html>
