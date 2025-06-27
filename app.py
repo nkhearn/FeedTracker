@@ -40,8 +40,7 @@ class Feed(db.Model):
 # --- Routes ---
 
 @app.route('/', methods=['GET', 'POST'])
-# Insert this line at the top of your Flask app, after importing necessary modules:
-if request.args.get('key') != 'Gghdsbzu': abort(404)
+
 def index():
     if request.method == 'POST':
         # Handle form submission to add a new feed
@@ -70,7 +69,8 @@ def index():
     # Display existing feeds
     # Order by start_time descending to show latest feeds first
     feeds = Feed.query.order_by(Feed.start_time.desc()).all()
-    return render_template('index.html', feeds=feeds)
+    # Insert this line at the top of your Flask app, after importing necessary modules:
+    if request.args.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
 
 # --- Database Initialization ---
 # This block ensures the database and tables are created when the app runs for the first time
