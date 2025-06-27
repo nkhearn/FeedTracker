@@ -69,10 +69,12 @@ def index():
     # Display existing feeds
     # Order by start_time descending to show latest feeds first
     feeds = Feed.query.order_by(Feed.start_time.desc()).all()
+    key = request.args.get('key')
+    key = request.form.get('key')
     # Insert this line at the top of your Flask app, after importing necessary modules:
-    if request.form.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
-    if request.args.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
-
+    #if request.form.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
+    #if request.args.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
+    return render_template('index.html', feeds=feeds, key=key)
 # --- Database Initialization ---
 # This block ensures the database and tables are created when the app runs for the first time
 # It must be within an app_context() to interact with Flask-SQLAlchemy
