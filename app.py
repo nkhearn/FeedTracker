@@ -40,15 +40,15 @@ class Feed(db.Model):
 # --- Routes ---
 
 @app.route('/', methods=['GET', 'POST'])
+# Insert this line at the top of your Flask app, after importing necessary modules:
+if request.args.get('key') != 'Gghdsbzu': abort(404)
 def index():
     if request.method == 'POST':
         # Handle form submission to add a new feed
         start_time_str = request.form['start_time']
         end_time_str = request.form['end_time']
         amount_ml = request.form['amount_ml']
-        # Insert this line at the top of your Flask app, after importing necessary modules:
-        if request.args.get('key') != 'Gghdsbzu': abort(404)
-
+        
         try:
             # Convert string to datetime object
             # Note: datetime-local input format is 'YYYY-MM-DDTHH:MM'
