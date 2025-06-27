@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Define the base directory of your application
 basedir = os.path.abspath(os.path.dirname(__file__))
-const port = process.env.PORT || 4000
+#const port = process.env.PORT || 4000
 # Configure SQLite database using an absolute path
 # The database file will be created inside the 'instance' folder within your app's root directory
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'tracker.db')
@@ -80,4 +80,4 @@ with app.app_context():
 
 # --- Run the App ---
 if __name__ == '__main__':
-    app.run(debug=True) # debug=True for development, turn off for production
+    app.run(debug=False, port=10000) # debug=True for development, turn off for production
