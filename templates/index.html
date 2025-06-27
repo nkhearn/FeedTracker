@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    {% if key %}
     <div class="container">
         <h1>Thomas' Feeding Tracker</h1>
 
@@ -81,5 +82,6 @@
             setCurrentDateTime();
         };
     </script>
+    {% endif %}
 </body>
 </html>
