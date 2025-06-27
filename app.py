@@ -71,6 +71,7 @@ def index():
     feeds = Feed.query.order_by(Feed.start_time.desc()).all()
     # Insert this line at the top of your Flask app, after importing necessary modules:
     if request.args.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
+    if request.args.post('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
 
 # --- Database Initialization ---
 # This block ensures the database and tables are created when the app runs for the first time
