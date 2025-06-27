@@ -80,4 +80,4 @@ with app.app_context():
 
 # --- Run the App ---
 if __name__ == '__main__':
-    app.run(debug=False, port=10000) # debug=True for development, turn off for production
+    app.run(debug=False, host="0.0.0.0",  port=10000) # debug=True for development, turn off for production
