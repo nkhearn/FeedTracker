@@ -58,7 +58,7 @@ def index():
             new_feed = Feed(start_time=start_time, end_time=end_time, amount_ml=amount_ml)
             db.session.add(new_feed)
             db.session.commit()
-            return redirect(url_for('index')) # Redirect to prevent re-submission on refresh
+            return redirect(url_for('index', key=key)) # Redirect to prevent re-submission on refresh
         except (ValueError, KeyError) as e:
             # Handle invalid input gracefully (e.g., show an error message)
             print(f"Error processing form: {e}")
