@@ -5,8 +5,6 @@ import os # Import the os module
 
 from flask import abort
 
-# Insert this line at the top of your Flask app, after importing necessary modules:
-if request.args.get('key') != 'Gghdsbzu': abort(404)
 
 
 
@@ -48,6 +46,8 @@ def index():
         start_time_str = request.form['start_time']
         end_time_str = request.form['end_time']
         amount_ml = request.form['amount_ml']
+        # Insert this line at the top of your Flask app, after importing necessary modules:
+        if request.args.get('key') != 'Gghdsbzu': abort(404)
 
         try:
             # Convert string to datetime object
