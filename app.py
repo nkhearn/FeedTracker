@@ -69,8 +69,9 @@ def index():
     # Display existing feeds
     # Order by start_time descending to show latest feeds first
     feeds = Feed.query.order_by(Feed.start_time.desc()).all()
-    key = request.args.get('key')
-    key = request.form.get('key')
+    key2 = request.args.get('key')
+    key2 = request.form.get('key')
+    key = (key2 == "gghdsbzu")
     # Insert this line at the top of your Flask app, after importing necessary modules:
     #if request.form.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
     #if request.args.get('key') == 'gghdsbzu': return render_template('index.html', feeds=feeds)
